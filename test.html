@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo</title>
+    <style>
+        /* Общие стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        .section-title {
+            font-weight: normal;
+            font-size: 36px; /* можно настроить по желанию */
+            margin-bottom: 30px;
+        }
+
+        body {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /*главная*/
+        .home {
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            padding: 40px 0;
+        }
+
+        .home-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            width: 100%;
+        }
+
+        .home-content {
+            flex: 1;
+            max-width: 600px;
+            text-align: left; /* Изменено с center на left */
+        }
+
+        .home-image {
+            flex: 1;
+            max-width: 500px;
+            background-color: #4169E1;
+            border-radius: 110px;
+        }
+
+        .home-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+
+        }
+
+        .hero-title {
+            font-size: 40px;
+            font-weight: normal;
+            color: #000000;
+
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 40px;
+            font-weight: 400;
+            margin-left: 120px;
+            color: #4169E1;
+            margin-bottom: 30px;
+            display: inline-block; /* Для transform */
+            transform: skewX(-10deg); /* Наклон на 10 градусов */
+            font-style: normal; /* Отключаем стандартный курсив */
+        }
+
+        .hero-description {
+            font-size: 20px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+
+        /* Кнопка */
+        /* Стили для круглой кнопки */
+        .circle-button {
+            position: absolute;
+            left: 800px; /* Отступ от левого края */
+            bottom: 60px; /* Отступ от нижнего края */
+            width: 150px;
+            height: 150px;
+            background: transparent;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 2;
+            transition: all 0.3s ease;
+            mix-blend-mode: screen;
+        }
+
+        .circle-button svg {
+            width: 100%;
+            height: 100%;
+            animation: rotateText 12s linear infinite;
+        }
+
+        /* Анимация вращения текста */
+        @keyframes rotateText {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Изменение цвета текста только на синем фоне */
+        .circle-button text {
+            fill: #333333; /* Исходный цвет текста */
+        }
+
+        /* Эффекты при наведении и нажатии */
+        .circle-button:hover {
+            transform: scale(1.1);
+        }
+
+        .circle-button:active {
+            transform: scale(1.15);
+        }
+
+        /* Ускорение вращения при наведении */
+        .circle-button:hover svg {
+            animation-duration: 6s;
+        }
+
+
+
+        /* Шапка */
+        header {
+            background-color: #fff;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            color: #333;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+            position: relative;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #4169E1;
+        }
+        /* Создаем эффект подчеркивания */
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #4169E1; /* Цвет подчеркивания */
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .auth-buttons a {
+            margin-left: 15px;
+            padding: 8px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: 1px solid #4169E1;
+        }
+
+        .login-btn {
+            color: #333;
+            border: 1px solid #4169E1;
+        }
+        .login-btn:hover {
+            color: white;
+            background-color: #4169E1;
+            text-decoration: none;
+        }
+
+        .register-btn {
+            color: #333;
+            background-color: transparent;
+        }
+        .register-btn:hover {
+            color: white;
+            background-color: #4169E1;
+            text-decoration: none;
+        }
+
+        /* Баннер (слайдер) */
+        .banner {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+        }
+
+        .banner-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+
+        .banner-slide.active {
+            opacity: 1;
+        }
+
+        .banner-slide-1 {
+            background-image: url('fon.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .banner-slide-2 {
+            background-image: url('fon.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .banner-content {
+            max-width: 600px;
+            padding: 40px;
+            border-radius: 10px;
+            margin-left: 100px;
+            position: absolute;      /* Добавляем абсолютное позиционирование */
+            bottom: 50px;           /* Отступ от нижнего края баннера */
+            left: 0px;            /* Отступ от левого края баннера */
+        }
+
+        .banner h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .banner p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        /* Секция "Кто мы" */
+        .team {
+            padding: 60px 0;
+        }
+
+        .team-intro {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .team-text {
+            flex: 1;
+            padding: 0 40px;
+            color: #000000;
+            font-size: 20px;
+        }
+
+        .team-photo-stack {
+            position: relative;
+            width: 350px;
+            height: 250px;
+            margin-right: 40px;
+        }
+
+        .team-photo {
+            position: absolute;
+            width: 200px;
+            height: 220px;
+            border-radius: 40px;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .team-photo.main {
+            top: 0;
+            left: 85px;
+            z-index: 3;
+        }
+
+        .team-photo.back1 {
+            top: -10px;
+            left: 75px;
+            z-index: 1;
+            opacity: 1;
+            transform: scale(0.8);
+            width: 250px;
+            height: 270px;
+        }
+
+        .team-photo.back2 {
+            top: -40px;
+            right: 50px;
+            z-index: 1;
+            opacity: 1;
+            transform: scale(0.8);
+            width: 250px;
+            height: 270px;
+        }
+
+        .team-photo.back3 {
+            top: -10px;
+            left: 75px;
+            z-index: 1;
+            opacity: 1;
+            transform: scale(0.8);
+            width: 250px;
+            height: 270px;
+        }
+
+        .team-photo.back4 {
+            top: -10px;
+            right: 55px;
+            z-index: 1;
+            opacity: 1;
+            transform: scale(0.8);
+            width: 250px;
+            height: 270px;
+        }
+
+        .team-grid {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .team-item {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        .team-item.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .team-text p {
+            margin-bottom: 15px;
+        }
+
+        .team-position {
+            color: #000000;
+            padding: 10px;
+            text-align: center;
+            font-style: normal;
+            margin-top: 230px; /* Для позиционирования внизу фото */
+            font-size: 12px;
+        }
+
+
+        /* Секция "Новинки" */
+        .products {
+            padding: 70px 0;
+            background-color: #FFFFFF;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-image {
+            width: 110%;
+            height: 340px;
+            background-size: cover; /* Заполняет весь блок с обрезкой краёв */
+            background-position: center; /* Центрирует изображение */
+            background-repeat: no-repeat;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .product-title {
+            font-size: 13px;
+            margin-bottom: 10px;
+            margin-right: 170px;
+            font-weight: normal;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .product-price {
+            font-weight: bold;
+            color: #000000;
+            font-size: 15px;
+            margin-top: -75px;
+            margin-left: 180px;
+        }
+        .new-button{
+            background-color: #4169E1;
+            color: #FFFFFF;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: block;
+            width: 220px;
+            margin-left: 950px;
+            font-weight: normal;
+            font-size: 13px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .new-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .new-button-container {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: -70px; /* уменьшить расстояние до рамки */
+            grid-column: 1 / -1; /* на всю ширину */
+            text-align: center;
+        }
+        .new-f{
+            position: absolute;
+            background-image: url('25c6213a-1d4d-4e70-8677-1ee328fba77c.png');
+            background-size: cover; /* или contain в зависимости от нужного эффекта */
+            top: 10px;
+            left: 10px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+        .like-button{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background-image: url('255ba7bf-5002-4e31-83c9-5fe3f7e3d87a.png');
+            background-size: cover; /* или contain в зависимости от нужного эффекта */
+            z-index: 2;
+            transition: all 0.3s ease;
+            border: none; /* Добавьте, если это кнопка */
+            padding: 0; /* Убирает внутренние отступы */
+        }
+
+        /* Эффект при наведении */
+        .like-button:hover {
+            transform: scale(1.1);
+        }
+
+        .color-options {
+            display: flex;
+            margin: 15px 0;
+        }
+
+        .color-option {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        /* Стиль ТОЛЬКО для кружков с двумя цветами */
+        .color-option.two-colors {
+            position: relative;
+            overflow: hidden;
+            background: none; /* Убираем обычный фон */
+        }
+
+        .color-option.two-colors::before,
+        .color-option.two-colors::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            top: 0;
+        }
+
+        .color-option.two-colors::before {
+            left: 0;
+            background-color: var(--color1);
+        }
+
+        .color-option.two-colors::after {
+            right: 0;
+            background-color: var(--color2);
+        }
+
+        .color-option.selected {
+            border-color: #333;
+        }
+        .color-option.selected.two-colors {
+            border-color: #333;
+        }
+
+        /* Секция "Какие проблемы решаем" */
+        .problems {
+            padding: 50px 0;
+            background-color: #4169E1;
+            color: white;
+            font-weight: normal;
+        }
+
+        .problem-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            max-width: 1000px;
+            margin: 40px auto 0;
+            color: white;
+            align-items: flex-start; /* ВАЖНО */
+        }
+
+        .problem-item {
+            border: 2px solid #f0f26b;
+            border-radius: 20px;
+            padding: 30px;
+            background-color: transparent; /* фон остаётся синий */
+            box-sizing: border-box;
+            width: auto;
+            flex: 0 0 auto;
+        }
+
+        .problem-item h3 {
+            font-size: 21px;
+            margin-bottom: 15px;
+            color: white;
+            font-weight: normal;
+        }
+
+        .problem-item ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .problem-item ul li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .problem-item ul li:before {
+            position: absolute;
+            left: 0;
+            color: white;
+            font-weight: bold;
+        }
+
+        .cta-button {
+            padding: 20px 30px;
+            background-color: #f0f26b;
+            color: #4169E1;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: block;
+            width: 400px;
+            margin-left: 620px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .cta-button-container {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: -70px; /* уменьшить расстояние до рамки */
+            grid-column: 1 / -1; /* на всю ширину */
+            text-align: center;
+        }
+
+        /* Секция "Как работаем" (аккордеон + фото) */
+        .process {
+            padding: 80px 0;
+            background-color: #FFFFFF;
+        }
+
+        .process-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 50px;
+        }
+
+        .process-accordion {
+            flex: 1;
+        }
+
+        .accordion-item {
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .accordion-header {
+            width: 100%;
+            padding: 20px;
+            background-color: #f0f26b;
+            color: #333;
+            border: none;
+            text-align: left;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-header:after {
+            content: "+";
+            font-size: 24px;
+        }
+
+        .accordion-header.active:after {
+            content: "-";
+        }
+        .accordion-header.active {
+            background-color: #4169E1;
+            color: white;
+        }
+
+        .accordion-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background-color: #f9f9f9;
+        }
+
+        .accordion-content-inner {
+            padding: 20px;
+        }
+
+        /* ВСТАВЬТЕ ФОТО ДЛЯ ПРОЦЕССА В background-image */
+        .process-image {
+            width: 400px;
+            height: 500px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Стили для футера */
+        footer {
+            background-color: #fff;
+            color: #333;
+            padding: 40px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .footer-column {
+            margin-bottom: 30px;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: normal;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: left;
+        }
+
+        .footer-title {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .footer-links li,
+        .footer-contacts li {
+            margin-bottom: 12px;
+            font-size: 14px;
+            line-height: 1.6;
+            list-style: none;     /* Убирает маркеры (точки) */
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .footer-links a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .footer-links a:hover {
+            color: #4169E1;
+        }
+
+        .footer-contacts {
+            list-style: none;
+            padding: 0;
+        }
+
+        /* Стили для иконок соцсетей */
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            transition: transform 0.3s;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+        }
+
+        .social-icon img {
+            width: 100%;
+            height: auto;
+        }
+
+
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .process-container {
+                flex-direction: column;
+            }
+
+            .process-image {
+                width: 100%;
+                margin-top: 30px;
+            }
+
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+
+            nav ul {
+                margin: 15px 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0 10px 10px;
+            }
+
+            .auth-buttons {
+                margin-top: 15px;
+            }
+
+            .banner {
+                height: 400px;
+            }
+
+            .banner-content {
+                margin-left: 20px;
+                padding: 20px;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-item {
+                flex-direction: column !important;
+                text-align: center;
+            }
+
+            .team-photo {
+                margin: 0 0 20px 0;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Шапка -->
+<header>
+    <div class="container header-container">
+        <div class="logo">Лого</div>
+        <nav>
+            <ul>
+                <li><a href="#who">Кто мы</a></li>
+                <li><a href="#products">Новинки</a></li>
+                <li><a href="#problems">Какие проблемы решаем</a></li>
+                <li><a href="#process">Как работаем</a></li>
+                <li><a href="#pricing">Тарифы</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <a href="#" class="login-btn">Войти</a>
+            <a href="#" class="register-btn">Регистрация</a>
+        </div>
+    </div>
+</header>
+
+<section class="home">
+    <div class="container home-container">
+        <div class="home-content">
+            <h1 class="hero-title">Освобождаем ваше время <br> для интервью</h1>
+            <h2 class="hero-subtitle">с лучшими из лучших</h2>
+            <p class="hero-description">
+                Автоматизируем процесс первичного отбора кандидатов на вакансию, чтобы вы максимально эффективно использовали ваше время и деньги
+            </p>
+            <!-- Круглая кнопка в левом нижнем углу изображения -->
+            <div class="circle-button">
+                <svg viewBox="0 0 100 100" width="150" height="150">
+                    <defs>
+                        <path id="circle-path" d="M50,50 m-35,0 a35,35 0 1,1 70,0 a35,35 0 1,1 -70,0"/>
+                    </defs>
+                    <text fill="#333" font-size="10">
+                        <textPath xlink:href="#circle-path" startOffset="0%">
+                            Начать Начать Начать Начать Начать Начать
+                        </textPath>
+                    </text>
+                </svg>
+            </div>
+        </div>
+        <div class="home-image">
+            <img src="r.png" alt="Описание изображения">
+        </div>
+    </div>
+</section>
+<!-- Баннер (слайдер) -->
+<section class="banner">
+    <div class="banner-slide banner-slide-1 active">
+        <div class="banner-content">
+            <h1>Летняя РАСПРОДАЖА</h1>
+            <p>Lorem ipsum dolor sit amet consectetur.</p>
+        </div>
+    </div>
+    <div class="banner-slide banner-slide-2">
+        <div class="banner-content">
+            <h1>Summer SALE</h1>
+            <p>Lorem ipsum dolor sit amet consectetur. Mi lacuis in nulla sed a neque.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Секция "Кто мы" -->
+<section class="team" id="who">
+    <div class="container">
+        <h2 class="section-title">Кто мы</h2>
+        <div class="team-intro">
+            <div class="team-grid">
+                <div class="team-item">
+                    <div class="team-text">
+                        <p>Мы молодая современная компания, которая очень хочет сделать мир лучше, а работу легче и эффективнее.</p>
+
+                    </div>
+                    <div class="team-photo-stack">
+                        <div class="team-photo back2" style="background-image: url('b17449c5-6c1f-4445-bcf2-d79a935ce9c9.png');"></div>
+                        <div class="team-photo main" style="background-image: url('eec72245-5a15-4d0c-9e3a-43ffa0f28680.png');"></div>
+                        <div class="team-position">Максим Ефимцев, <i>главный разработчик</i></div>
+                    </div>
+                </div>
+
+
+                <div class="team-item reverse">
+                    <div class="team-text">
+                        <p>Поэтому мы придумали AI-сервис, автоматизирующий первичное тестирование кандидатов на управленческие должности.</p>
+                    </div>
+                    <div class="team-photo-stack">
+                        <div class="team-photo main" style="background-image: url('f1c837e4-0d5b-407e-975d-c5f3fe60faf4.png');"></div>
+                        <div class="team-photo back1" style="background-image: url('c3f83c7a-fc25-46c6-821c-79a05419aada.png');"></div>
+                        <div class="team-position">Роза Скаридзе, <i>главный директор</i></div>
+                    </div>
+                </div>
+
+                <div class="team-item">
+                    <div class="team-text">
+                        <p>Вам больше не придется оценивать сотни резюме и вручную проводить первичные собеседования с кандидатами.</p>
+                    </div >
+                    <div class="team-photo-stack">
+                        <div class="team-photo main" style="background-image: url('980eae12-92a0-471a-ba43-53944a29b75e.png');"></div>
+                        <div class="team-photo back4" style="background-image: url('c3f83c7a-fc25-46c6-821c-79a05419aada.png');"></div>
+                        <div class="team-position">Марина Каус, <i>аналитик данных</i></div>
+                    </div>
+                </div>
+
+                <div class="team-item reverse">
+                    <div class="team-text">
+                        <p>Это долго, а еще так можно упустить человека с плохо написанным резюме, но с классными навыками. Так что мы решили это исправить!</p>
+                    </div>
+                    <div class="team-photo-stack">
+                        <div class="team-photo main" style="background-image: url('16cfaff3-a4c5-44e1-89ab-7808758af5d8.png');"></div>
+                        <div class="team-photo back3" style="background-image: url('b17449c5-6c1f-4445-bcf2-d79a935ce9c9.png');"></div>
+                        <div class="team-position">Петр Макаревич, <i>маркетолог</i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Секция "Новинки" -->
+<section class="products" id="products">
+    <div class="container">
+        <h2 class="section-title">Новинки</h2>
+        <div class="new-button-container">
+            <a href="#" class="new-button">Смотреть все новинки</a>
+        </div>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('8ebcf26f-b498-4366-a84c-9515ff56f345.png');"><div class="like-button"></div> <div class="new-f"></div></div>
+                <h3 class="product-title">Товар 1</h3>
+                <div class="color-options">
+                    <div class="color-option selected" style="background-color: #e0e0e0;"></div>
+                </div>
+                <div class="product-price">4500 p</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('9f175093-927f-4c98-bf40-d4bd6320a30e.png');"><div class="like-button"></div><div class="new-f"></div></div>
+                <h3 class="product-title">Товар 2</h3>
+                <div class="color-options">
+                    <div class="color-option selected" style="background-color: #829e8a;"></div>
+                    <div class="color-option" style="background-color: #4e59ba;"></div>
+                </div>
+                <div class="product-price">4900 p</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('8ebcf26f-b498-4366-a84c-9515ff56f345.png');"><div class="like-button"></div><div class="new-f"></div></div>
+                <h3 class="product-title">Товар 3</h3>
+                <div class="color-options">
+                    <div class="color-option selected two-colors" style="--color1: #c0db51; --color2: #e0e0e0;"></div>
+                    <div class="color-option two-colors" style="--color1: #6bfacf; --color2: #e0e0e0;"></div>
+                    <div class="color-option two-colors" style="--color1: #f745f1; --color2: #e0e0e0;"></div>
+                </div>
+                <div class="product-price">4900 p</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('9f175093-927f-4c98-bf40-d4bd6320a30e.png');"> <div class="like-button"></div><div class="new-f"></div></div>
+                <h3 class="product-title">Товар 4</h3>
+                <div class="color-options">
+                    <div class="color-option selected" style="background-color: #829e8a;"></div>
+                    <div class="color-option" style="background-color: #4e59ba;"></div>
+                </div>
+                <div class="product-price">4900 p</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Секция "Какие проблемы решаем" -->
+<section class="problems" id="problems">
+    <div class="container">
+        <h2  class="section-title">Какие проблемы решаем</h2>
+        <div class="problem-list">
+            <div class="problem-item" style=" margin-bottom: 30px;">
+                <h3>Высокая стоимость сотрудника</h3>
+                <p>Снизим для вас стоимость нового сотрудника, взяв на себя и автоматизировав отбор кандидатов из сотен резюме на рынке, чтобы до собеседования доходили только лучшие из лучших.</p>
+            </div>
+            <div class="problem-item" style=" margin-bottom: 30px; margin-left: 60px; width: 500px; height: 215px;">
+                <h3>Недостаток времени для полезной работы</h3>
+                <p>Освободим рабочее время ваших рекрутеров от однотипных рутинных задач, с которыми справится и робот. А они займутся более сложными финальными стадиями найма.</p>
+            </div>
+            <div class="problem-item" style="margin-right: 60px; width: 550px; height: 400px; ">
+                <h3>Разбор результатов интервью и их анализ</h3>
+                <p>Вы получите объективный и детальный разбор по каждому <br> кандидату. Туда войдут:</p>
+                <ul>
+                    <li>радарный график по компетенциям</li>
+                    <li>преимущества и недостатки</li>
+                    <li>процентное сравнение с другими кандидатами</li>
+                    <li>детали интервью кандидата</li>
+                </ul>
+                <p>Все это будет собрано в таблице. Кандидатов отсортируем <br> по общему баллу. Ваши рекрутеры смогут сэкономить время.</p>
+            </div>
+            <div class="problem-item" style="margin-left: 110px;">
+                <h3>Низкая эффективность HR-отдела</h3>
+                <p>Мы возьмем на себя все самые <br> раздражающие и убивающие <br> время пункты работы, чтобы <br> рекрутеры могли находить лучших <br> сотрудников с меньшими усилиями.</p>
+            </div>
+            <div class="cta-button-container">
+                <a href="#" class="cta-button">Буст эффективности</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Секция "Как работаем" -->
+<section class="process" id="process">
+    <div class="container">
+        <h2 class="section-title">Как работаем</h2>
+        <div class="process-container">
+            <div class="process-accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">Создание интервью</button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>1. Вы загружаете описание вакансии.</p>
+                            <p>2. AI на основе вашего описания генерирует детали для будущего интервью.</p>
+                            <p>3. По желанию вы можете отредактировать каждый пункт, сделать его более или менее детализированным.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">Отправка интервью кандидатам</button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Здесь будет описание процесса отправки интервью кандидатам...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">Получение результатов в удобной таблице</button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Здесь будет описание работы с таблицей результатов...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">Автоматический фидбэк для кандидата</button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Здесь будет описание работы с таблицей результатов...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="process-image" style="background-image: url('ce4e02f1-241d-4b00-a6ec-9b131c75ed29.png');"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Футер -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <!-- Колонка 1 -->
+            <div class="footer-column">
+                <h3 class="footer-logo">Лого</h3>
+            </div>
+
+            <!-- Колонка 2 -->
+            <div class="footer-column">
+                <ul class="footer-links">
+                    <li><a href="#">Каталог</a></li>
+                    <li><a href="#">Бренд</a></li>
+                    <li><a href="#">Для покупателя</a></li>
+                </ul>
+            </div>
+
+            <!-- Колонка 3 -->
+            <div class="footer-column">
+                <ul class="footer-links">
+                    <li><a href="#">Программа лояльности</a></li>
+                    <li><a href="#">Политика конфиденциальности</a></li>
+                    <li><a href="#">Публичная оферта</a></li>
+                </ul>
+            </div>
+
+            <!-- Колонка 4 - Соцсети и контакты -->
+            <div class="footer-column">
+                <ul class="footer-contacts">
+                    <li>Новосибирск, ул. Проспект Мира, 1</li>
+                    <li>Ежедневно: с 8:00 до 0:00</li>
+                </ul>
+                <ul class="footer-contacts">
+                    <li>+7 (999) 999-99-99</li>
+                    <li>example@gmail.com</li>
+                </ul>
+
+                <!-- Блок для иконок соцсетей -->
+                <div class="social-icons">
+                    <!-- ВСТАВЬТЕ ССЫЛКИ НА ИКОНКИ СОЦСЕТЕЙ ЗДЕСЬ -->
+                    <!-- Пример: -->
+                    <a href="#" class="social-icon"><img src="07e5c5fa-8457-4c8c-af82-d41a2bfb42a4.jpeg" alt="Telegram"></a>
+                    <a href="#" class="social-icon"><img src="29189c52-f218-4b46-b752-57f2162ac52f.jpeg" alt="VK"></a>
+                    <a href="#" class="social-icon"><img src="aed7d64a-3513-4179-aba3-4c1603085492.png" alt="Instagram"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Слайдер баннера
+    let currentBannerSlide = 0;
+    const bannerSlides = document.querySelectorAll('.banner-slide');
+
+    function showBannerSlide(n) {
+        bannerSlides.forEach(slide => slide.classList.remove('active'));
+        currentBannerSlide = (n + bannerSlides.length) % bannerSlides.length;
+        bannerSlides[currentBannerSlide].classList.add('active');
+    }
+
+    setInterval(() => showBannerSlide(currentBannerSlide + 1), 5000);
+
+    // Аккордеон
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+    accordionHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            header.classList.toggle('active');
+            const content = header.nextElementSibling;
+            if (header.classList.contains('active')) {
+                content.style.maxHeight = content.scrollHeight + 'px';
+            } else {
+                content.style.maxHeight = 0;
+            }
+        });
+    });
+
+    // Выбор цвета товара
+    const colorOptions = document.querySelectorAll('.color-option');
+
+    colorOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            this.parentElement.querySelector('.selected').classList.remove('selected');
+            this.classList.add('selected');
+        });
+    });
+
+    //кнопка
+
+
+</script>
+
+</body>
+</html>
